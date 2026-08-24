@@ -76,6 +76,7 @@ export default function ClientPage({ initialContent }: { initialContent: any }) 
   const [winScrollY, setWinScrollY] = useState(0);
   const [mounted, setMounted] = useState(false);
   const [selectedModuleMessage, setSelectedModuleMessage] = useState('');
+  const [isHeroFormHighlighted, setIsHeroFormHighlighted] = useState(false);
   
   const processRef = useRef<HTMLDivElement>(null);
   const processProgress = useScrollProgress(processRef);
@@ -131,6 +132,20 @@ export default function ClientPage({ initialContent }: { initialContent: any }) 
         behavior: 'smooth'
       });
     }
+  };
+
+  const triggerHeroFormHighlight = () => {
+    scrollToCenter('hero-form-card');
+    setIsHeroFormHighlighted(true);
+    setTimeout(() => {
+      const nameInput = document.getElementById('hero-name');
+      if (nameInput) {
+        nameInput.focus();
+      }
+    }, 450);
+    setTimeout(() => {
+      setIsHeroFormHighlighted(false);
+    }, 2400);
   };
 
   const handleGuidanceClick = (cardTitle: string) => {
@@ -192,7 +207,7 @@ export default function ClientPage({ initialContent }: { initialContent: any }) 
           {/* Glowing Top-Right CTA Pill Button */}
           <button 
             type="button"
-            onClick={() => scrollToCenter('hero-form-card')}
+            onClick={triggerHeroFormHighlight}
             className="relative px-6 py-3 rounded-full border border-cyan-400/80 bg-[#06202e]/80 text-cyan-300 font-extrabold uppercase tracking-wider text-xs md:text-sm shadow-[0_0_20px_rgba(34,211,238,0.4)] hover:shadow-[0_0_30px_rgba(34,211,238,0.7)] hover:bg-[#082a3d] hover:text-white transition-all duration-300 flex items-center gap-2 group overflow-hidden cursor-pointer"
           >
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-cyan-400/20 to-transparent -translate-x-full group-hover:animate-shimmer pointer-events-none"></div>
@@ -245,7 +260,7 @@ export default function ClientPage({ initialContent }: { initialContent: any }) 
               <div className="pt-2 flex flex-wrap items-center gap-4">
                 <button 
                   type="button"
-                  onClick={() => scrollToCenter('hero-form-card')}
+                  onClick={triggerHeroFormHighlight}
                   className="px-8 py-4 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-extrabold text-sm md:text-base uppercase tracking-widest shadow-[0_0_25px_rgba(34,211,238,0.4)] hover:shadow-[0_0_35px_rgba(34,211,238,0.7)] transition-all duration-300 flex items-center gap-2.5 group cursor-pointer"
                 >
                   <span>{content.hero?.button1?.value || "Get Research Paper Guidance"}</span>
@@ -258,11 +273,23 @@ export default function ClientPage({ initialContent }: { initialContent: any }) 
             {/* Right Column: Contact Form Card */}
             <div className="lg:col-span-5 w-full" id="contact">
               <FadeIn delay={150}>
-                <div id="hero-form-card" className="bg-[#060c19]/95 backdrop-blur-2xl border border-[#1e293b] hover:border-cyan-500/40 rounded-2xl p-7 md:p-9 shadow-[0_0_50px_rgba(14,165,233,0.15)] transition-all duration-500 relative overflow-hidden">
-                  
+                <div 
+                  id="hero-form-card" 
+                  className={`bg-[#060c19]/95 backdrop-blur-2xl border rounded-2xl p-7 md:p-9 transition-all duration-500 relative overflow-hidden ${
+                    isHeroFormHighlighted 
+                      ? 'border-cyan-400 ring-4 ring-cyan-400/60 shadow-[0_0_80px_rgba(34,211,238,0.9)] scale-[1.03]' 
+                      : 'border-[#1e293b] hover:border-cyan-500/40 shadow-[0_0_50px_rgba(14,165,233,0.15)]'
+                  }`}
+                >
+                  {isHeroFormHighlighted && (
+                    <div className="absolute top-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-extrabold text-xs uppercase px-4 py-1.5 rounded-full shadow-[0_0_20px_rgba(34,211,238,0.9)] z-20 flex items-center gap-1.5 animate-bounce">
+                      <Sparkles className="w-3.5 h-3.5" /> Please Fill Out This Form Below
+                    </div>
+                  )}
+
                   <div className="absolute top-0 right-0 w-64 h-64 bg-cyan-500/15 rounded-full blur-[80px] pointer-events-none -translate-y-1/2 translate-x-1/4"></div>
 
-                  <h2 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-white mb-6 text-center tracking-tight">
+                  <h2 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-white mb-6 text-center tracking-tight pt-2">
                     Contact <span className="bg-gradient-to-r from-cyan-400 to-sky-400 bg-clip-text text-transparent font-extrabold">Us</span>
                   </h2>
 
@@ -321,7 +348,7 @@ export default function ClientPage({ initialContent }: { initialContent: any }) 
             
             <FadeIn>
               <div className="text-center max-w-4xl mx-auto mb-14">
-                <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-5 tracking-tight leading-tight">
+                <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-5 tracking-tight leading-tight [text-wrap:balance]">
                   {content.strugglingSection?.heading}
                 </h2>
                 <div className="h-px w-24 bg-gradient-to-r from-cyan-400 to-indigo-500 mx-auto shadow-[0_0_10px_rgba(34,211,238,0.9)] mb-6"></div>
@@ -365,7 +392,7 @@ export default function ClientPage({ initialContent }: { initialContent: any }) 
             
             <FadeIn>
               <div className="text-center max-w-4xl mx-auto mb-12">
-                <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-5 tracking-tight">
+                <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-5 tracking-tight [text-wrap:balance]">
                   {content.whatIsGuidance?.heading}
                 </h2>
                 <div className="h-px w-24 bg-gradient-to-r from-cyan-400 to-indigo-500 mx-auto shadow-[0_0_10px_rgba(34,211,238,0.9)] mb-6"></div>
@@ -392,7 +419,7 @@ export default function ClientPage({ initialContent }: { initialContent: any }) 
                 
                 <Quote className="h-12 w-12 text-cyan-400 mx-auto mb-5 opacity-80" />
 
-                <h3 className="text-3xl md:text-4xl font-extrabold text-white mb-5 tracking-tight">
+                <h3 className="text-3xl md:text-4xl font-extrabold text-white mb-5 tracking-tight [text-wrap:balance]">
                   {content.whatIsGuidance?.calloutTitle}
                 </h3>
 
@@ -415,7 +442,7 @@ export default function ClientPage({ initialContent }: { initialContent: any }) 
             
             <FadeIn>
               <div className="text-center max-w-4xl mx-auto mb-16">
-                <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-5 tracking-tight">
+                <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-5 tracking-tight [text-wrap:balance]">
                   {content.whatWeGuide?.heading}
                 </h2>
                 <div className="h-px w-24 bg-gradient-to-r from-cyan-400 to-indigo-500 mx-auto shadow-[0_0_10px_rgba(34,211,238,0.9)] mb-6"></div>
@@ -436,7 +463,7 @@ export default function ClientPage({ initialContent }: { initialContent: any }) 
                         <div className="w-14 h-14 rounded-xl bg-[#09152a] border border-cyan-500/30 flex items-center justify-center text-cyan-400 mb-6 group-hover:scale-110 group-hover:border-cyan-400 transition-all duration-300 shadow-inner">
                           <IconComponent className="h-7 w-7 stroke-[1.75]" />
                         </div>
-                        <h3 className="text-2xl font-extrabold text-white mb-3 group-hover:text-cyan-300 transition-colors">
+                        <h3 className="text-2xl font-extrabold text-white mb-3 group-hover:text-cyan-300 transition-colors [text-wrap:balance]">
                           {item.title}
                         </h3>
                         <p className="text-slate-300 text-base font-normal leading-relaxed">
@@ -468,7 +495,7 @@ export default function ClientPage({ initialContent }: { initialContent: any }) 
             
             <FadeIn>
               <div className="text-center max-w-4xl mx-auto mb-16">
-                <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-5 tracking-tight">
+                <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-5 tracking-tight [text-wrap:balance]">
                   {content.howItWorks?.heading}
                 </h2>
                 <div className="h-px w-24 bg-gradient-to-r from-cyan-400 to-indigo-500 mx-auto shadow-[0_0_10px_rgba(34,211,238,0.9)]"></div>
@@ -516,7 +543,7 @@ export default function ClientPage({ initialContent }: { initialContent: any }) 
             
             <FadeIn>
               <div className="text-center max-w-4xl mx-auto mb-16">
-                <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-5 tracking-tight">
+                <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-5 tracking-tight [text-wrap:balance]">
                   {content.whyChoose?.heading}
                 </h2>
                 <div className="h-px w-24 bg-gradient-to-r from-cyan-400 to-indigo-500 mx-auto shadow-[0_0_10px_rgba(34,211,238,0.9)] mb-6"></div>
@@ -532,7 +559,7 @@ export default function ClientPage({ initialContent }: { initialContent: any }) 
                       <div className="w-14 h-14 rounded-xl bg-[#09152a] border border-cyan-500/30 flex items-center justify-center text-cyan-400 mb-6 group-hover:scale-110 transition-transform shadow-inner">
                         <IconComponent className="h-7 w-7 stroke-[1.75]" />
                       </div>
-                      <h3 className="text-2xl font-extrabold text-white mb-3 group-hover:text-cyan-300 transition-colors">
+                      <h3 className="text-2xl font-extrabold text-white mb-3 group-hover:text-cyan-300 transition-colors [text-wrap:balance]">
                         {reason.title}
                       </h3>
                       <p className="text-slate-300 text-base font-normal leading-relaxed">
@@ -553,7 +580,7 @@ export default function ClientPage({ initialContent }: { initialContent: any }) 
             
             <FadeIn>
               <div className="max-w-4xl mx-auto mb-12">
-                <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-5 tracking-tight">
+                <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-5 tracking-tight [text-wrap:balance]">
                   {content.whoCanBenefit?.heading}
                 </h2>
                 <div className="h-px w-24 bg-gradient-to-r from-cyan-400 to-indigo-500 mx-auto shadow-[0_0_10px_rgba(34,211,238,0.9)] mb-6"></div>
@@ -596,11 +623,11 @@ export default function ClientPage({ initialContent }: { initialContent: any }) 
               <div className="bg-gradient-to-br from-[#060d1c] via-[#09152b] to-[#060d1c] border-2 border-cyan-500/40 rounded-3xl p-9 md:p-14 shadow-[0_20px_50px_rgba(0,0,0,0.85)] relative overflow-hidden">
                 
                 <div className="text-center max-w-3xl mx-auto mb-12">
-                  <h2 className="text-4xl md:text-6xl font-extrabold text-white mb-5 tracking-tight leading-tight">
+                  <h2 className="text-4xl md:text-6xl font-extrabold text-white mb-5 tracking-tight leading-tight [text-wrap:balance]">
                     {content.ourPhilosophy?.heading}
                   </h2>
                   <div className="h-px w-24 bg-gradient-to-r from-cyan-400 to-indigo-500 mx-auto shadow-[0_0_12px_rgba(34,211,238,0.9)] mb-6"></div>
-                  <h3 className="text-2xl md:text-3xl font-bold text-cyan-300">
+                  <h3 className="text-2xl md:text-3xl font-bold text-cyan-300 [text-wrap:balance]">
                     {content.ourPhilosophy?.subheading}
                   </h3>
                 </div>
@@ -655,7 +682,7 @@ export default function ClientPage({ initialContent }: { initialContent: any }) 
           <div className="w-full">
             <FadeIn>
               <div className="text-center mb-12 px-6">
-                 <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-5 tracking-tight">
+                 <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-5 tracking-tight [text-wrap:balance]">
                    {content.testimonialsSection?.heading || "Testimonials"}
                  </h2>
                  <div className="h-px w-24 bg-gradient-to-r from-cyan-400 to-indigo-500 mx-auto shadow-[0_0_10px_rgba(34,211,238,0.9)] mb-5"></div>
@@ -676,7 +703,7 @@ export default function ClientPage({ initialContent }: { initialContent: any }) 
             
             <FadeIn>
               <div className="text-center mb-16">
-                <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-5 tracking-tight">
+                <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-5 tracking-tight [text-wrap:balance]">
                   {content.faqs?.heading || "FAQs"}
                 </h2>
                 <div className="h-px w-24 bg-gradient-to-r from-cyan-400 to-indigo-500 mx-auto shadow-[0_0_10px_rgba(34,211,238,0.9)]"></div>
@@ -724,7 +751,7 @@ export default function ClientPage({ initialContent }: { initialContent: any }) 
                     <Sparkles className="h-3.5 w-3.5 text-cyan-400" /> Research Paper Mentorship
                   </div>
 
-                  <h2 className="text-4xl md:text-6xl font-extrabold text-white leading-tight tracking-tight">
+                  <h2 className="text-4xl md:text-6xl font-extrabold text-white leading-tight tracking-tight [text-wrap:balance]">
                     {content.finalCTA?.heading}
                   </h2>
 
