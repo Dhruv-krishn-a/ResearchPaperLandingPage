@@ -68,7 +68,7 @@
       "image": "https://ui-avatars.com/api/?name=Ilakshi+Singh&background=0A1326&color=22D3EE&size=128",
       "stars": 5,
       "author": "Ilakshi Singh",
-      "reviewText": "<p>I&nbsp;recently&nbsp;availed&nbsp;services&nbsp;from&nbsp;WRIRK-MP&nbsp;Research&nbsp;Work,&nbsp;and&nbsp;I\u2019m&nbsp;highly&nbsp;satisfied&nbsp;with&nbsp;the&nbsp;overall&nbsp;experience.&nbsp;The&nbsp;team&nbsp;was&nbsp;knowledgeable,&nbsp;cooperative,&nbsp;and&nbsp;delivered&nbsp;quality&nbsp;work&nbsp;within&nbsp;the&nbsp;promised&nbsp;timeline.&nbsp;Their&nbsp;understanding&nbsp;of&nbsp;research&nbsp;and&nbsp;professionalism&nbsp;stood&nbsp;out.&nbsp;Due&nbsp;to&nbsp;their&nbsp;guidance&nbsp;I&nbsp;able&nbsp;to&nbsp;seek&nbsp;admission.</p>"
+      "reviewText": "<p>I&nbsp;recently&nbsp;availed&nbsp;services&nbsp;from&nbsp;WRIRK-MP&nbsp;Research&nbsp;Work,&nbsp;and&nbsp;I’m&nbsp;highly&nbsp;satisfied&nbsp;with&nbsp;the&nbsp;overall&nbsp;experience.&nbsp;The&nbsp;team&nbsp;was&nbsp;knowledgeable,&nbsp;cooperative,&nbsp;and&nbsp;delivered&nbsp;quality&nbsp;work&nbsp;within&nbsp;the&nbsp;promised&nbsp;timeline.&nbsp;Their&nbsp;understanding&nbsp;of&nbsp;research&nbsp;and&nbsp;professionalism&nbsp;stood&nbsp;out.&nbsp;Due&nbsp;to&nbsp;their&nbsp;guidance&nbsp;I&nbsp;able&nbsp;to&nbsp;seek&nbsp;admission.</p>"
     },
     {
       "id": 7,
@@ -81,7 +81,7 @@
   ],
   "globalSettings": {
     "seoTitle": {
-      "value": "Guidance Support for Researchers | WRIRK"
+      "value": "WRIRK – Research Paper Guidance"
     },
     "callNumber": {
       "type": "text",
@@ -92,7 +92,7 @@
       "value": "contact@wrirk.com"
     },
     "seoDescription": {
-      "value": "Get professional guidance for research. WRIRK helps researchers improve quality and write with confidence."
+      "value": "Get expert support throughout your research paper journey from understanding your research direction to preparing your manuscript for submission."
     },
     "whatsappNumber": {
       "value": "+919548521859"
@@ -108,198 +108,245 @@
     },
     "description": [
       {
-        "value": "We provide customized support for research scholars, from creating clear research outlines to offering expert reviews."
+        "value": "WRIRK provides expert guidance and mentorship for researchers at every stage of their manuscript development."
       }
     ]
   },
   "hero": {
-    "button1": {
-      "value": "Get Research Paper Guidance"
-    },
-    "button2": {
-      "value": "Talk to a Research Expert"
-    },
     "headline": {
       "value": "Have a Research Idea but Don't Know How to Turn It Into a Strong Research Paper?"
     },
     "description": [
       {
-        "value": "Get expert support throughout your research paper journey from understanding your direction to preparing your manuscript."
+        "value": "Get expert support throughout your research paper journey from understanding your research direction to preparing your manuscript for submission."
       }
     ],
     "integrityBold": {
       "value": "You Do the Research. We Guide You Through It."
     },
-    "integrityText": [
-      {
-        "value": "With the right guidance, you can understand each stage and develop your paper with greater confidence."
-      }
-    ]
-  },
-  "whyTrustUs": {
-    "quote": {
-      "value": "We Don't Write Your Paper. We Help You Learn How to Develop It.\nYou conduct your research. You remain the author."
-    },
-    "heading": {
-      "value": "Struggling to Develop Your Research Paper?"
-    },
-    "features": [
-      {
-        "icon": "TrendingUp",
-        "title": "Structure",
-        "description": "How to structure your paper and organize your literature review."
-      },
-      {
-        "icon": "Globe",
-        "title": "Analysis",
-        "description": "How to analyse findings and connect results with existing research."
-      },
-      {
-        "icon": "Award",
-        "title": "Formatting",
-        "description": "How to format your manuscript according to journal requirements."
-      },
-      {
-        "icon": "BookOpen",
-        "title": "Readiness",
-        "description": "Whether your paper is ready for journal submission."
-      }
-    ]
-  },
-  "trustedPartner": {
-    "heading": {
-      "value": "What Is Research Paper Guidance?"
-    },
-    "ctaText1": {
-      "value": "We Don't Write Your Research Paper for You."
-    },
-    "ctaText2": {
-      "value": "We help you understand how to develop it, apply the right research approach, review your work, and improve your manuscript."
-    },
-    "features": [
-      {
-        "icon": "ShieldCheck",
-        "title": "One-on-One Guidance",
-        "description": "Personalized attention based on your specific challenges."
-      },
-      {
-        "icon": "Users",
-        "title": "Experienced Research Mentors",
-        "description": "Learn from professionals with expertise across domains."
-      },
-      {
-        "icon": "FileCheck2",
-        "title": "Domain-Specific Support",
-        "description": "Receive guidance relevant to your research area."
-      },
-      {
-        "icon": "Activity",
-        "title": "Understand the Process",
-        "description": "We help you understand why something needs to change."
-      },
-      {
-        "icon": "BookOpen",
-        "title": "Review & Feedback",
-        "description": "Get constructive expert feedback to strengthen your manuscript."
-      },
-      {
-        "icon": "ArrowRight",
-        "title": "Researcher-Centric Approach",
-        "description": "You remain actively involved in your manuscript development."
-      }
-    ],
-    "ctaHeading": {
-      "value": "Your research remains your work and your intellectual contribution."
+    "button1": {
+      "value": "Get Research Paper Guidance"
     }
   },
-  "services": {
-    "heading": {
-      "value": "What We Guide You With"
-    },
-    "description": [
-      {
-        "value": "Support for your research paper from start to submission."
-      }
+  "strugglingSection": {
+    "heading": "Struggling to Develop Your Research Paper?",
+    "intro": "You may have completed your research but still be unsure about:",
+    "points": [
+      "How to structure your research paper",
+      "How to define a clear research problem or research question",
+      "How to organize your literature review",
+      "How to present your research methodology",
+      "How to analyse and interpret your findings",
+      "How to connect your results with existing research",
+      "How to write an effective discussion and conclusion",
+      "How to manage citations and references",
+      "How to format your manuscript according to journal requirements",
+      "Whether your paper is ready for journal submission"
     ],
-    "cards": [
-      {
-        "id": "p1",
-        "icon": "BookOpen",
-        "title": "Paper Structure & Literature",
-        "desc": "Understand the purpose of different sections and how to organize existing literature."
-      },
-      {
-        "id": "p2",
-        "icon": "Activity",
-        "title": "Methodology & Analysis",
-        "desc": "Guidance on presenting your research design, interpreting findings, and discussions."
-      },
-      {
-        "id": "p3",
-        "icon": "Users",
-        "title": "Review & Submission",
-        "desc": "Expert feedback on your manuscript and guidance on journal requirements."
-      }
-    ]
+    "conclusion": "With the right guidance, you can understand each stage and develop your paper with greater confidence."
   },
-  "process": {
-    "heading": {
-      "value": "How Our Guidance Works"
-    },
-    "description": [
-      {
-        "value": "Clear steps to a publish-ready paper."
-      }
-    ],
-    "steps": [
-      {
-        "step": "01",
-        "title": "Understand Your Research",
-        "desc": "We understand your objectives and the stage of your manuscript."
-      },
-      {
-        "step": "02",
-        "title": "Identify Challenges",
-        "desc": "Discuss specific areas where you need guidance."
-      },
-      {
-        "step": "03",
-        "title": "Learn & Develop",
-        "desc": "Apply relevant concepts to your own research paper."
-      },
-      {
-        "step": "04",
-        "title": "Review & Improve",
-        "desc": "Share your work for expert review and prepare for submission."
-      }
-    ]
+  "whatIsGuidance": {
+    "heading": "What Is Research Paper Guidance?",
+    "paragraph1": "WRIRK’s Research Paper Guidance Service is designed for researchers who need expert support in developing and improving their research paper.",
+    "paragraph2": "Our experts help you understand the structure and requirements of an academic research paper, explain relevant research concepts, review your work, identify areas for improvement, and guide you toward a stronger manuscript.",
+    "calloutTitle": "We Don't Write Your Research Paper for You.",
+    "calloutText": "We help you understand how to develop it, apply the right research approach, review your work, and improve your manuscript.",
+    "calloutFooter": "Your research remains your work and your intellectual contribution."
   },
-  "faqs": {
-    "heading": {
-      "value": "Frequently Asked Questions"
-    },
-    "description": [
-      {
-        "value": "Common questions about Research Paper Guidance"
-      }
-    ],
+  "whatWeGuide": {
+    "heading": "What We Guide You With",
     "items": [
       {
-        "q": "Does WRIRK write research papers?",
+        "title": "Research Problem & Research Question",
+        "description": "Get guidance on defining a focused research problem and developing research questions aligned with your study."
+      },
+      {
+        "title": "Paper Structure",
+        "description": "Understand the purpose of different sections of a research paper and how they should logically connect."
+      },
+      {
+        "title": "Literature Review",
+        "description": "Learn how to identify relevant studies, organize existing literature, identify research gaps, and establish the context for your research."
+      },
+      {
+        "title": "Research Methodology",
+        "description": "Understand how to present your research design, methods, sampling, data collection, variables, tools, and other methodological components."
+      },
+      {
+        "title": "Data Analysis & Interpretation",
+        "description": "Get guidance on understanding appropriate analytical approaches and interpreting your research findings."
+      },
+      {
+        "title": "Results & Findings",
+        "description": "Learn how to present your findings clearly and connect them with your research objectives and questions."
+      },
+      {
+        "title": "Discussion",
+        "description": "Understand how to interpret your findings, compare them with existing research, and explain their academic significance."
+      },
+      {
+        "title": "Conclusion & Research Implications",
+        "description": "Get guidance on developing meaningful conclusions and presenting the implications, limitations, and possible future research directions."
+      },
+      {
+        "title": "Citations & References",
+        "description": "Receive guidance on citation practices, reference management, and maintaining consistency throughout your manuscript."
+      },
+      {
+        "title": "Manuscript Formatting",
+        "description": "Understand how to organize and format your research paper according to relevant academic or journal requirements."
+      },
+      {
+        "title": "Research Paper Review",
+        "description": "Get expert feedback on your manuscript to identify structural gaps, inconsistencies, clarity issues, and areas that may need improvement."
+      },
+      {
+        "title": "Journal Submission Guidance",
+        "description": "If you plan to submit your paper to a journal, receive guidance on understanding journal requirements and preparing your manuscript accordingly."
+      }
+    ]
+  },
+  "howItWorks": {
+    "heading": "How Our Research Paper Guidance Works",
+    "steps": [
+      {
+        "step": "Step 1",
+        "title": "Understand Your Research",
+        "description": "We begin by understanding your research topic, objectives, current research progress, and the stage of your manuscript."
+      },
+      {
+        "step": "Step 2",
+        "title": "Identify Your Challenges",
+        "description": "Discuss the specific areas where you need guidance — whether it is methodology, analysis, manuscript structure, discussion, formatting, or another research challenge."
+      },
+      {
+        "step": "Step 3",
+        "title": "Learn & Develop",
+        "description": "Our experts explain the relevant research concepts and approaches so you can apply them to your own research paper."
+      },
+      {
+        "step": "Step 4",
+        "title": "Review & Improve",
+        "description": "Share your work for expert review and receive constructive feedback on areas that can be strengthened."
+      },
+      {
+        "step": "Step 5",
+        "title": "Prepare for Submission",
+        "description": "Once your manuscript is developed, receive guidance on formatting, journal requirements, and the submission process where applicable."
+      }
+    ]
+  },
+  "whyChoose": {
+    "heading": "Why Choose WRIRK?",
+    "reasons": [
+      {
+        "title": "One-on-One Guidance",
+        "description": "Get personalized attention based on your research topic, paper, and specific challenges."
+      },
+      {
+        "title": "Experienced Research Mentors",
+        "description": "Learn from experienced research professionals with expertise across diverse research domains."
+      },
+      {
+        "title": "Domain-Specific Support",
+        "description": "Receive guidance relevant to your research area rather than generic instructions."
+      },
+      {
+        "title": "Understand the Process",
+        "description": "We don't simply tell you what to change. We help you understand why something needs to change and how you can improve it."
+      },
+      {
+        "title": "Review & Feedback",
+        "description": "Get constructive expert feedback to identify gaps and strengthen your manuscript."
+      },
+      {
+        "title": "Researcher-Centric Approach",
+        "description": "You remain actively involved in your research and manuscript development at every stage."
+      }
+    ]
+  },
+  "whoCanBenefit": {
+    "heading": "Who Can Benefit?",
+    "intro": "Research Paper Guidance can help:",
+    "audiences": [
+      "PhD Scholars",
+      "PhD Aspirants",
+      "Master's Students",
+      "Faculty Members",
+      "Independent Researchers",
+      "Research Professionals"
+    ],
+    "closing": "Whether you are developing your first research paper or need guidance on a specific manuscript, our experts can support you according to your research requirements."
+  },
+  "ourPhilosophy": {
+    "heading": "Your Research. Your Paper. Our Guidance.",
+    "subheading": "We Don't Write Your Paper. We Help You Learn How to Develop It.",
+    "body1": "At WRIRK, our goal is to empower researchers with the knowledge and guidance they need to work independently and confidently.",
+    "body2": "We do not write your research paper on your behalf.",
+    "body3": "Instead, we help you:",
+    "flow": ["Understand", "Learn", "Develop", "Review", "Improve"],
+    "bullets": [
+      "You conduct your research.",
+      "You make the research decisions.",
+      "You develop your manuscript.",
+      "You remain the author."
+    ],
+    "body4": "We provide the guidance and expertise to help you move forward.",
+    "tagline": "We Guide. We Teach. We Don't Write."
+  },
+  "testimonialsSection": {
+    "heading": "Testimonials",
+    "subtext": "What Researchers Say About Our Guidance"
+  },
+  "faqs": {
+    "heading": "FAQs",
+    "items": [
+      {
+        "q": "1. Does WRIRK write research papers?",
         "a": "No. WRIRK provides research guidance and mentorship. We do not write research papers for you. Our experts guide you through the research and manuscript development process."
       },
       {
-        "q": "Can you guide me if I already have a research paper draft?",
+        "q": "2. What areas of research paper development do you guide?",
+        "a": "We provide guidance on research problems, research questions, literature review, methodology, analysis, findings, discussion, conclusion, citations, references, manuscript structure, formatting, and journal submission requirements."
+      },
+      {
+        "q": "3. Can you guide me if I already have a research paper draft?",
         "a": "Yes. You can receive expert guidance based on your existing manuscript and discuss areas where you need clarification, review, or improvement."
       },
       {
-        "q": "Can you review my research paper?",
+        "q": "4. Can you help me understand research methodology?",
+        "a": "Yes. Our experts can explain methodological concepts and help you understand approaches relevant to your research."
+      },
+      {
+        "q": "5. Do you provide guidance on data analysis?",
+        "a": "Yes. We can guide you in understanding appropriate analytical approaches and interpreting your research findings according to your research objectives."
+      },
+      {
+        "q": "6. Can you review my research paper?",
         "a": "Yes. Our experts can review your work and provide constructive feedback on structure, clarity, research alignment, methodology, and other relevant areas."
       },
       {
-        "q": "Can you help me prepare my paper for journal submission?",
+        "q": "7. Can you help me prepare my paper for journal submission?",
         "a": "Yes. We can provide guidance on understanding journal requirements, manuscript formatting, and the submission process."
+      },
+      {
+        "q": "8. Do you provide guidance for different research domains?",
+        "a": "Yes. Guidance is customized according to your research area and requirements."
+      },
+      {
+        "q": "9. Can I get guidance only for a specific section of my paper?",
+        "a": "Yes. You can discuss specific sections or research challenges where you need expert guidance, subject to the scope of the guidance program."
+      },
+      {
+        "q": "10. Will the research paper remain my own work?",
+        "a": "Absolutely. Your research and manuscript remain your intellectual work. WRIRK provides guidance, mentorship, review, and research support without replacing your role as the researcher."
       }
     ]
+  },
+  "finalCTA": {
+    "heading": "Ready to Move Your Research Paper Forward?",
+    "subtext": "Get expert guidance, understand the research process, strengthen your manuscript, and move toward submission with greater confidence.",
+    "tagline": "Your Research. Your Paper. Expert Guidance.",
+    "ctaText": "Get Research Paper Guidance"
   }
 }
