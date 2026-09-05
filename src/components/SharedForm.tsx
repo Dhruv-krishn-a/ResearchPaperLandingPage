@@ -1,7 +1,7 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
-import { Check, Loader2, Send, ChevronDown, AlertCircle, Lock, ArrowRight } from 'lucide-react';
+import React, { useState } from 'react';
+import { Check, Loader2, ChevronDown, AlertCircle, Lock, ArrowRight } from 'lucide-react';
 
 interface SharedFormProps {
   formId: string;
@@ -29,12 +29,14 @@ export default function SharedForm({ formId, buttonText = "Request Free Consulta
   const [touched, setTouched] = useState({ name: false, phone: false, email: false, message: false });
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
 
-  useEffect(() => {
+  const [prevInitialMessage, setPrevInitialMessage] = useState(initialMessage);
+  if (initialMessage !== prevInitialMessage) {
+    setPrevInitialMessage(initialMessage);
     if (initialMessage) {
       setFormState(prev => ({ ...prev, message: initialMessage }));
       setTouched(prev => ({ ...prev, message: true }));
     }
-  }, [initialMessage]);
+  }
 
   const isValidName = (name: string) => name.trim().length >= 3;
   const isValidEmail = (email: string) => /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email.trim());
@@ -86,7 +88,7 @@ export default function SharedForm({ formId, buttonText = "Request Free Consulta
         setSubmitStatus('error');
         setTimeout(() => setSubmitStatus('idle'), 3000);
       }
-    } catch (error) {
+    } catch {
       setSubmitStatus('error');
       setTimeout(() => setSubmitStatus('idle'), 3000);
     }

@@ -3,19 +3,143 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { 
-  ChevronDown, BookOpen, Award, TrendingUp, Users, Clock, ShieldCheck, 
-  PenTool, Send, PhoneCall, ArrowRight, FileCheck2, Quote, Activity, 
-  Globe, CheckCircle, Star, Sparkles, HelpCircle, GraduationCap, Target, 
+  ChevronDown, TrendingUp, Users, ShieldCheck, Clock,
+  PenTool, Send, ArrowRight, Quote, 
+  Globe, CheckCircle, Sparkles, HelpCircle, GraduationCap, Target, 
   FileText, Lightbulb, Compass, Layers, Search, BarChart3, 
-  CheckSquare, MessageSquareQuote, UserCheck, BadgeCheck, MessageCircle, Phone
+  CheckSquare, MessageSquareQuote, UserCheck, BadgeCheck
 } from 'lucide-react';
 import dynamic from 'next/dynamic';
 import SharedForm from '@/components/SharedForm';
 import ReviewCarousel from '@/components/ReviewCarousel';
+import { GoogleReview } from '@/components/GoogleReviewCard';
 import MouseGlowEffect from '@/components/MouseGlowEffect';
 
 const AnimatedCounter = dynamic(() => import('@/components/AnimatedCounter'), { ssr: false });
 const PopupForm = dynamic(() => import('@/components/PopupForm'), { ssr: false });
+
+type ContentValue = { value: string };
+
+interface ContentItem {
+  icon?: string;
+  title?: string;
+  desc?: string;
+  description?: string;
+  subtitle?: string;
+  number?: string;
+  label?: string;
+  text?: string;
+  step?: string;
+  stepNumber?: string;
+  heading?: string;
+  details?: string[];
+  points?: string[];
+  q?: string;
+  a?: string;
+  question?: string;
+  answer?: string;
+  value?: string;
+  href?: string;
+}
+
+interface SiteContent {
+  globalSettings?: {
+    brandName?: ContentValue;
+    heroBadgeText?: ContentValue;
+    phoneNumber?: ContentValue;
+    whatsappNumber?: ContentValue;
+    whatsappMessage?: ContentValue;
+    callNumber?: ContentValue;
+    [key: string]: unknown;
+  };
+  hero?: {
+    tag?: ContentValue;
+    title?: ContentValue;
+    headline?: ContentValue;
+    subtitle?: ContentValue;
+    button1?: ContentValue;
+    button2?: ContentValue;
+    integrityBold?: ContentValue;
+    integrityText?: Array<ContentValue>;
+    description?: Array<ContentValue>;
+    trustBadges?: Array<{ text: string; subtext?: string }>;
+    [key: string]: unknown;
+  };
+  metrics?: ContentItem[];
+  strugglingSection?: {
+    heading?: string;
+    intro?: string;
+    points?: string[];
+    conclusion?: string;
+  };
+  whatIsGuidance?: {
+    heading?: string;
+    paragraph1?: string;
+    paragraph2?: string;
+    pillars?: Array<{ step?: string; title?: string; description?: string }>;
+    calloutTitle?: string;
+    calloutText?: string;
+    calloutFooter?: string;
+  };
+  whatWeGuide?: {
+    heading?: string;
+    items?: ContentItem[];
+  };
+  howItWorks?: {
+    heading?: string;
+    steps?: ContentItem[];
+  };
+  whyChoose?: {
+    heading?: string;
+    reasons?: ContentItem[];
+  };
+  whoCanBenefit?: {
+    heading?: string;
+    intro?: string;
+    audiences?: string[];
+    closing?: string;
+  };
+  ourPhilosophy?: {
+    heading?: string;
+    subheading?: string;
+    body1?: string;
+    body2?: string;
+    body3?: string;
+    flow?: string[];
+    bullets?: string[];
+    body4?: string;
+    tagline?: string;
+  };
+  testimonialsSection?: {
+    heading?: string;
+    subtext?: string;
+  };
+  reviews?: GoogleReview[];
+  faqs?: {
+    heading?: string;
+    items?: ContentItem[];
+  };
+  finalCTA?: {
+    heading?: string;
+    subtext?: string;
+    tagline?: string;
+    ctaText?: string;
+  };
+  footer?: {
+    brandName?: ContentValue;
+    tagline?: ContentValue;
+    description?: Array<ContentValue>;
+    socials?: {
+      whatsapp?: string;
+      linkedin?: string;
+      youtube?: string;
+    };
+    links?: Array<{ text: string; href: string }>;
+    copyright?: ContentValue;
+    [key: string]: unknown;
+  };
+  [key: string]: unknown;
+}
 
 const useScrollProgress = (ref: React.RefObject<HTMLDivElement | null>) => {
   const [progress, setProgress] = useState(0);
@@ -68,13 +192,11 @@ function FadeIn({ children, delay = 0, className = "" }: { children: React.React
   );
 }
 
-export default function ClientPage({ initialContent }: { initialContent: any }) {
+export default function ClientPage({ initialContent }: { initialContent: SiteContent }) {
   const content = initialContent;
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [scrolled, setScrolled] = useState(false);
   const [scrollPercent, setScrollPercent] = useState(0);
-  const [winScrollY, setWinScrollY] = useState(0);
-  const [mounted, setMounted] = useState(false);
   const [selectedModuleMessage, setSelectedModuleMessage] = useState('');
   const [isHeroFormHighlighted, setIsHeroFormHighlighted] = useState(false);
   
@@ -85,11 +207,8 @@ export default function ClientPage({ initialContent }: { initialContent: any }) 
   const [footerHeight, setFooterHeight] = useState(0);
 
   useEffect(() => {
-    setMounted(true);
-    
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
-      setWinScrollY(window.scrollY);
       const winScroll = document.documentElement.scrollTop;
       const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
       setScrollPercent(height > 0 ? (winScroll / height) * 100 : 0);
@@ -148,8 +267,10 @@ export default function ClientPage({ initialContent }: { initialContent: any }) 
     }, 2400);
   };
 
-  const handleGuidanceClick = (cardTitle: string) => {
-    setSelectedModuleMessage(`I need guidance on: ${cardTitle}`);
+  const handleGuidanceClick = (cardTitle?: string) => {
+    if (cardTitle) {
+      setSelectedModuleMessage(`I need guidance on: ${cardTitle}`);
+    }
     const targetElement = document.getElementById('final-cta-card-box') || document.getElementById('bottom-cta-card');
     if (targetElement) {
       const elementRect = targetElement.getBoundingClientRect();
@@ -236,14 +357,15 @@ export default function ClientPage({ initialContent }: { initialContent: any }) 
             <div className="lg:col-span-7 text-left space-y-7 pt-2">
               
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] xl:text-[3.5rem] font-extrabold text-white leading-[1.18] tracking-tight [text-wrap:balance] drop-shadow-[0_0_25px_rgba(255,255,255,0.1)]">
-                Have a Research Idea but Don't Know How to Turn It Into a{' '}
+                Turn Your Research Into a{' '}
                 <span className="inline-block bg-gradient-to-r from-cyan-400 via-sky-400 to-indigo-400 bg-clip-text text-transparent drop-shadow-[0_0_25px_rgba(34,211,238,0.5)]">
-                  Strong Research Paper?
-                </span>
+                  Strong Research Paper
+                </span>{' '}
+                With Expert Guidance
               </h1>
 
               <p className="text-slate-200 text-lg md:text-xl font-normal leading-relaxed max-w-2xl">
-                Get expert support throughout your research paper journey from understanding your research direction to preparing your manuscript for submission.
+                {content.hero?.description?.[0]?.value || "Get expert guidance throughout your research paper journey from understanding your research direction to working confidently on your research paper."}
               </p>
 
               {/* Callout Box */}
@@ -302,41 +424,46 @@ export default function ClientPage({ initialContent }: { initialContent: any }) 
         </section>
 
         {/* Metrics Bar */}
-        <section className="py-12 md:py-16 border-y border-[#1e293b] bg-[#030712]/90 backdrop-blur-md z-10 relative">
+        <section className="py-8 md:py-12 px-4 sm:px-6 relative z-10">
           <FadeIn>
-            <div className="max-w-7xl mx-auto px-4 md:px-8">
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 items-center">
-                 {content.metrics?.map((metric: any, i: number) => {
-                   const cleanValue = metric.value.replace(/,/g, '');
-                   const numMatch = cleanValue.match(/\d+/);
-                   const num = numMatch ? parseInt(numMatch[0]) : null;
-                   const suffix = metric.value.replace(/[\d,]+/, '').trim();
-                   
-                   return (
-                     <div 
-                       key={i} 
-                       className={`flex flex-col items-center justify-center text-center px-4 py-5 md:py-3 relative ${
-                         i < content.metrics.length - 1 ? 'lg:border-r border-white/10' : ''
-                       }`}
-                     >
-                        <div className="min-h-[72px] flex items-center justify-center">
-                          {num !== null ? (
-                            <span className="text-5xl sm:text-6xl lg:text-6xl font-extrabold text-white tracking-tight leading-none drop-shadow-md">
-                              <AnimatedCounter end={num} suffix={suffix} duration={2000} />
-                            </span>
-                          ) : (
-                            <span className="text-3xl sm:text-4xl lg:text-4xl font-extrabold text-white leading-tight tracking-tight drop-shadow-md">
-                              Confidential <br /> &amp; Ethical
-                            </span>
-                          )}
-                        </div>
+            <div className="max-w-7xl mx-auto relative z-10 py-10 md:py-12 border border-white/40 bg-white/95 backdrop-blur-xl shadow-[0_0_50px_rgba(255,255,255,0.15)] rounded-3xl lg:rounded-[2.5rem] px-6 md:px-12">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-0 items-center">
+                 {content.metrics?.map((metric: ContentItem, i: number) => {
+                    const cleanValue = (metric.value || '').replace(/,/g, '');
+                    const numMatch = cleanValue.match(/\d+/);
+                    const num = numMatch ? parseInt(numMatch[0]) : null;
+                    const suffix = (metric.value || '').replace(/[\d,]+/, '').trim();
+                    
+                    return (
+                      <div 
+                        key={i} 
+                        className={`flex items-center gap-4 sm:gap-5 px-3 sm:px-4 lg:px-6 py-2 justify-start ${
+                          content.metrics && i < content.metrics.length - 1 ? 'lg:border-r border-slate-300' : ''
+                        }`}
+                      >
+                         {metric.icon === 'Clock' && <Clock className="w-9 h-9 sm:w-10 sm:h-10 text-slate-950 shrink-0 stroke-[2.2]" />}
+                         {metric.icon === 'Users' && <Users className="w-9 h-9 sm:w-10 sm:h-10 text-slate-950 shrink-0 stroke-[2.2]" />}
+                         {(metric.icon === 'FileCheck2' || metric.icon === 'FileText') && <FileText className="w-9 h-9 sm:w-10 sm:h-10 text-slate-950 shrink-0 stroke-[2.2]" />}
+                         {metric.icon === 'ShieldCheck' && <ShieldCheck className="w-9 h-9 sm:w-10 sm:h-10 text-slate-950 shrink-0 stroke-[2.2]" />}
+                         
+                         <div className="flex flex-col justify-center text-left">
+                           {num !== null ? (
+                             <span className="text-3xl sm:text-4xl font-extrabold text-slate-950 tracking-tight leading-none">
+                               <AnimatedCounter end={num} suffix={suffix} duration={2000} />
+                             </span>
+                           ) : (
+                             <span className="text-xl sm:text-2xl font-extrabold text-slate-950 leading-tight tracking-tight">
+                               Confidential &amp; <br className="hidden sm:inline" />Ethical
+                             </span>
+                           )}
 
-                        <div className="text-xs sm:text-sm font-extrabold text-cyan-400 tracking-widest uppercase mt-3.5">
-                          {metric.label}
-                        </div>
-                     </div>
-                   );
-                 })}
+                           <div className="text-xs sm:text-[13px] font-bold text-[#1e293b] tracking-wider uppercase mt-1.5 leading-tight">
+                             {metric.label}
+                           </div>
+                         </div>
+                      </div>
+                    );
+                  })}
               </div>
             </div>
           </FadeIn>
@@ -377,8 +504,8 @@ export default function ClientPage({ initialContent }: { initialContent: any }) 
             {/* Section Conclusion */}
             <FadeIn delay={300}>
               <div className="bg-gradient-to-r from-[#081226] via-[#0c1a38] to-[#081226] border border-cyan-500/40 rounded-2xl p-7 md:p-9 text-center shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
-                <p className="text-cyan-200 text-xl md:text-2xl font-bold leading-relaxed">
-                  "{content.strugglingSection?.conclusion}"
+                <p className="text-cyan-200 text-xl md:text-2xl font-bold leading-relaxed whitespace-pre-line">
+                  &quot;{content.strugglingSection?.conclusion}&quot;
                 </p>
               </div>
             </FadeIn>
@@ -399,18 +526,47 @@ export default function ClientPage({ initialContent }: { initialContent: any }) 
               </div>
             </FadeIn>
 
-            <div className="space-y-6 text-slate-200 text-lg md:text-xl font-normal leading-relaxed mb-14 max-w-4xl mx-auto text-center md:text-left">
+            <div className="text-slate-200 text-lg md:text-xl font-normal leading-relaxed mb-10 max-w-4xl mx-auto text-center md:text-left">
               <FadeIn delay={100}>
                 <p className="p-7 rounded-2xl bg-[#070e1e]/90 border border-[#1e293b]">
                   {content.whatIsGuidance?.paragraph1}
                 </p>
               </FadeIn>
-              <FadeIn delay={200}>
-                <p className="p-7 rounded-2xl bg-[#070e1e]/90 border border-[#1e293b]">
-                  {content.whatIsGuidance?.paragraph2}
-                </p>
-              </FadeIn>
+              {content.whatIsGuidance?.paragraph2 && (
+                <FadeIn delay={200}>
+                  <p className="p-7 rounded-2xl bg-[#070e1e]/90 border border-[#1e293b] mt-4">
+                    {content.whatIsGuidance.paragraph2}
+                  </p>
+                </FadeIn>
+              )}
             </div>
+
+            {/* 5 Guidance Pillars */}
+            {content.whatIsGuidance?.pillars && (
+              <div className="flex flex-wrap justify-center gap-6 mb-14">
+                {content.whatIsGuidance.pillars.map((pillar, idx) => (
+                  <FadeIn 
+                    key={idx} 
+                    delay={idx * 50}
+                    className="w-full md:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)] max-w-sm flex"
+                  >
+                    <div className="bg-[#070e1e]/80 backdrop-blur-xl border border-[#1e293b] hover:border-cyan-500/50 p-6 sm:p-7 rounded-2xl flex flex-col justify-between w-full h-full shadow-md group hover:bg-[#0c1834] transition-all duration-300">
+                      <div>
+                        <div className="w-10 h-10 rounded-xl bg-cyan-950/80 border border-cyan-500/30 flex items-center justify-center text-cyan-400 font-extrabold text-sm mb-4 group-hover:scale-110 transition-transform">
+                          0{pillar.step || idx + 1}
+                        </div>
+                        <h3 className="text-xl font-extrabold text-white mb-2.5 group-hover:text-cyan-300 transition-colors">
+                          {pillar.title}
+                        </h3>
+                        <p className="text-slate-300 text-sm font-normal leading-relaxed">
+                          {pillar.description}
+                        </p>
+                      </div>
+                    </div>
+                  </FadeIn>
+                ))}
+              </div>
+            )}
 
             {/* Highlighted Banner Card */}
             <FadeIn delay={300}>
@@ -454,7 +610,7 @@ export default function ClientPage({ initialContent }: { initialContent: any }) 
 
             {/* 12 Guidance Modules Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
-              {content.whatWeGuide?.items?.map((item: any, idx: number) => {
+              {content.whatWeGuide?.items?.map((item: ContentItem, idx: number) => {
                 const IconComponent = whatWeGuideIcons[idx % whatWeGuideIcons.length];
                 return (
                   <FadeIn key={idx} delay={idx * 40}>
@@ -509,7 +665,7 @@ export default function ClientPage({ initialContent }: { initialContent: any }) 
                 style={{ height: `${processProgress}%` }}
               ></div>
 
-              {content.howItWorks?.steps?.map((stepItem: any, idx: number) => {
+              {content.howItWorks?.steps?.map((stepItem: ContentItem, idx: number) => {
                 const isActive = processProgress > (idx * 20);
                 return (
                   <FadeIn key={idx} delay={idx * 80}>
@@ -551,7 +707,7 @@ export default function ClientPage({ initialContent }: { initialContent: any }) 
             </FadeIn>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
-              {content.whyChoose?.reasons?.map((reason: any, idx: number) => {
+              {content.whyChoose?.reasons?.map((reason: ContentItem, idx: number) => {
                 const IconComponent = whyChooseIcons[idx % whyChooseIcons.length];
                 return (
                   <FadeIn key={idx} delay={idx * 50}>
@@ -612,7 +768,7 @@ export default function ClientPage({ initialContent }: { initialContent: any }) 
               </div>
             </FadeIn>
 
-          </div>
+            </div>
         </section>
 
         {/* 8. YOUR RESEARCH. YOUR PAPER. OUR GUIDANCE. */}
@@ -645,7 +801,7 @@ export default function ClientPage({ initialContent }: { initialContent: any }) 
                       <span className="px-5 py-2.5 rounded-full bg-cyan-500/15 border border-cyan-400/40 text-cyan-300 text-sm md:text-base font-extrabold uppercase tracking-wider">
                         {item}
                       </span>
-                      {idx < content.ourPhilosophy.flow.length - 1 && (
+                      {idx < (content.ourPhilosophy?.flow?.length ?? 0) - 1 && (
                         <ArrowRight className="h-4 w-4 text-cyan-400 opacity-60 hidden sm:inline" />
                       )}
                     </React.Fragment>
@@ -711,7 +867,7 @@ export default function ClientPage({ initialContent }: { initialContent: any }) 
             </FadeIn>
 
             <div className="divide-y divide-[#1e293b] border-y border-[#1e293b]">
-              {content.faqs?.items?.map((faq: any, i: number) => (
+              {content.faqs?.items?.map((faq: ContentItem, i: number) => (
                 <FadeIn key={i} delay={i * 20}>
                   <div className="py-6">
                     <button 
@@ -805,7 +961,7 @@ export default function ClientPage({ initialContent }: { initialContent: any }) 
                 <span className="font-serif text-[26px] tracking-widest text-white uppercase">WRIRK</span>
               </div>
               <p className="text-slate-400 font-normal max-w-sm leading-relaxed text-base mb-4">
-                {content.footer?.description?.map((p: any) => p.value).join(' ')}
+                {content.footer?.description?.map((p: { value: string }) => p.value).join(' ')}
               </p>
               <a href="mailto:contact@wrirk.com" className="text-cyan-400 hover:text-cyan-300 text-base font-semibold transition-colors">contact@wrirk.com</a>
             </div>

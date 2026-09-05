@@ -5,10 +5,10 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 import GoogleReviewCard, { GoogleReview } from './GoogleReviewCard';
 
 interface Props {
-  reviews: GoogleReview[];
+  reviews?: GoogleReview[];
 }
 
-export default function ReviewCarousel({ reviews }: Props) {
+export default function ReviewCarousel({ reviews = [] }: Props) {
   const carouselRef = useRef<HTMLDivElement>(null);
   const [isHovered, setIsHovered] = useState(false);
 
