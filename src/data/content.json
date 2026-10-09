@@ -13,7 +13,7 @@
     {
       "icon": "FileCheck2",
       "label": "Researchers Supported",
-      "value": "1,000+"
+      "value": "12,000+"
     },
     {
       "icon": "ShieldCheck",
@@ -81,7 +81,7 @@
   ],
   "globalSettings": {
     "seoTitle": {
-      "value": "WRIRK – Research Paper Guidance"
+      "value": "PhD Research Paper Guidance for Research Scholars | Wrirk"
     },
     "callNumber": {
       "type": "text",
@@ -92,7 +92,7 @@
       "value": "contact@wrirk.com"
     },
     "seoDescription": {
-      "value": "Get expert support throughout your research paper journey from understanding your research direction to preparing your manuscript for submission."
+      "value": "Get reliable PhD research paper guidance from experienced research professionals to support you throughout your research work."
     },
     "whatsappNumber": {
       "value": "+919548521859"
@@ -142,38 +142,38 @@
     "conclusion": "With the right guidance, you can understand every stage of your research paper and move forward with greater clarity and confidence."
   },
   "whatIsGuidance": {
-    "heading": "What Is Research Paper Guidance?",
-    "paragraph1": "Research Paper Guidance is a personalized service that helps researchers understand how to approach and work on their research paper with expert support.",
+    "heading": "WHAT IS RESEARCH PAPER GUIDANCE?",
+    "paragraph1": "Research Paper Guidance is personalized academic support that helps you understand your research, strengthen your approach, and work confidently on your paper, while keeping you in control of your own research.",
     "pillars": [
       {
         "step": "1",
-        "title": "Understand Your Research Paper",
-        "description": "Learn how a research paper is structured and understand the purpose of its different sections."
+        "title": "UNDERSTAND THE STRUCTURE",
+        "description": "Discover how each section of a research paper fits together and what it needs to communicate."
       },
       {
         "step": "2",
-        "title": "Learn How to Approach Each Section",
-        "description": "Get guidance on how to work on the different sections of your research paper according to your research."
+        "title": "APPROACH EVERY SECTION WITH CLARITY",
+        "description": "Learn how to organize and develop each part of your paper in line with your research objectives."
       },
       {
         "step": "3",
-        "title": "Understand Research Methods & Approaches",
-        "description": "Learn how relevant research methods, literature, analysis, and interpretation apply to your research paper."
+        "title": "MAKE SENSE OF RESEARCH METHODS",
+        "description": "Understand how literature, research methods, data analysis, and interpretation relate to your study."
       },
       {
         "step": "4",
-        "title": "Get Expert Guidance & Feedback",
-        "description": "Discuss your doubts and challenges with research experts and receive personalized feedback based on your progress."
+        "title": "GAIN EXPERT FEEDBACK",
+        "description": "Discuss your challenges, clarify doubts, and receive constructive feedback tailored to your research progress."
       },
       {
         "step": "5",
-        "title": "Learn & Work Independently",
-        "description": "Gain the understanding and confidence to apply the guidance to your own research paper and make informed research decisions."
+        "title": "BUILD CONFIDENCE TO WORK INDEPENDENTLY",
+        "description": "Apply what you learn, make informed academic decisions, and take ownership of developing your research paper."
       }
     ],
-    "calloutTitle": "We Don't Write Your Research Paper for You.",
-    "calloutText": "We guide you, teach you, and help you understand how to work on your research paper yourself.",
-    "calloutFooter": "Your research remains your work and your intellectual contribution."
+    "calloutTitle": "We Don't Write Your Research Paper for You",
+    "calloutText": "We guide you, teach you, and help you understand how to work on your research paper yourself",
+    "calloutFooter": "Your research remains your work and your intellectual contribution"
   },
   "whatWeGuide": {
     "heading": "What We Guide You With",
@@ -235,31 +235,32 @@
     ]
   },
   "whyChoose": {
-    "heading": "Why Choose WRIRK?",
+    "heading": "WHY CHOOSE WRIRK?",
+    "subheading": "Research Guidance That Puts You at the Centre of Your Journey.",
     "reasons": [
       {
-        "title": "One-on-One Guidance",
-        "description": "Get personalized attention based on your research, paper, and specific challenges."
+        "title": "01 | PERSONALIZED ONE-ON-ONE GUIDANCE",
+        "description": "Receive undivided attention tailored to your research topic, progress, and specific challenges."
       },
       {
-        "title": "Experienced Research Mentors",
-        "description": "Learn from experienced research professionals with expertise across diverse research domains."
+        "title": "02 | EXPERIENCED RESEARCH MENTORS",
+        "description": "Gain insights from research professionals with experience across diverse academic domains."
       },
       {
-        "title": "Domain-Specific Support",
-        "description": "Receive guidance relevant to your research area rather than generic, one-size-fits-all instructions."
+        "title": "03 | DOMAIN-SPECIFIC SUPPORT",
+        "description": "Get guidance relevant to your subject and research needs—not generic, one-size-fits-all advice."
       },
       {
-        "title": "Learn, Don't Just Follow",
-        "description": "Understand the concepts, methods, and approaches behind your research so you can apply them yourself."
+        "title": "04 | LEARN WITH EXPERT SUPPORT",
+        "description": "Understand the concepts, methods, and techniques behind your research so you can apply them to your own work."
       },
       {
-        "title": "Review & Feedback",
-        "description": "Discuss your work with experts, clarify your doubts, and receive constructive feedback based on your research progress."
+        "title": "05 | CONSTRUCTIVE REVIEW & FEEDBACK",
+        "description": "Discuss your work, clarify doubts, and identify opportunities to strengthen your research approach."
       },
       {
-        "title": "Researcher-Centric Approach",
-        "description": "You remain actively involved in your research at every stage. We provide the guidance and expertise while you make the research decisions."
+        "title": "06 | A RESEARCHER-FIRST APPROACH",
+        "description": "Stay actively involved at every stage. You remain the author and decision-maker while we provide guidance to help you move forward."
       }
     ]
   },

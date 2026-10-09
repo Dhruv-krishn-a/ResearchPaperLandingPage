@@ -3,11 +3,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { 
-  ChevronDown, TrendingUp, Users, ShieldCheck, Clock,
-  PenTool, Send, ArrowRight, Quote, 
-  Globe, CheckCircle, Sparkles, HelpCircle, GraduationCap, Target, 
-  FileText, Lightbulb, Compass, Layers, Search, BarChart3, 
-  CheckSquare, MessageSquareQuote, UserCheck, BadgeCheck
+  ChevronDown, Users, ArrowRight, 
+  Globe, HelpCircle, GraduationCap, 
+  Lightbulb, UserCheck, BadgeCheck, Sparkles,
+  Clock, FileText, ShieldCheck, Quote
 } from 'lucide-react';
 import dynamic from 'next/dynamic';
 import SharedForm from '@/components/SharedForm';
@@ -91,6 +90,7 @@ interface SiteContent {
   };
   whyChoose?: {
     heading?: string;
+    subheading?: string;
     reasons?: ContentItem[];
   };
   whoCanBenefit?: {
@@ -197,7 +197,6 @@ export default function ClientPage({ initialContent }: { initialContent: SiteCon
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [scrolled, setScrolled] = useState(false);
   const [scrollPercent, setScrollPercent] = useState(0);
-  const [selectedModuleMessage, setSelectedModuleMessage] = useState('');
   const [isHeroFormHighlighted, setIsHeroFormHighlighted] = useState(false);
   
   const processRef = useRef<HTMLDivElement>(null);
@@ -229,12 +228,6 @@ export default function ClientPage({ initialContent }: { initialContent: SiteCon
     };
   }, []);
 
-  // Icon mapping helpers
-  const whatWeGuideIcons = [
-    Target, Layers, Search, Compass, BarChart3, 
-    TrendingUp, MessageSquareQuote, FileText, CheckSquare, 
-    PenTool, ShieldCheck, Send
-  ];
 
   const whyChooseIcons = [
     UserCheck, GraduationCap, Globe, Lightbulb, BadgeCheck, Users
@@ -267,27 +260,6 @@ export default function ClientPage({ initialContent }: { initialContent: SiteCon
     }, 2400);
   };
 
-  const handleGuidanceClick = (cardTitle?: string) => {
-    if (cardTitle) {
-      setSelectedModuleMessage(`I need guidance on: ${cardTitle}`);
-    }
-    const targetElement = document.getElementById('final-cta-card-box') || document.getElementById('bottom-cta-card');
-    if (targetElement) {
-      const elementRect = targetElement.getBoundingClientRect();
-      const absoluteElementTop = elementRect.top + window.pageYOffset;
-      const middleOffset = absoluteElementTop - (window.innerHeight / 2) + (elementRect.height / 2);
-      window.scrollTo({
-        top: Math.max(0, middleOffset),
-        behavior: 'smooth'
-      });
-      setTimeout(() => {
-        const messageInput = document.getElementById('bottom-cta-message');
-        if (messageInput) {
-          messageInput.focus();
-        }
-      }, 500);
-    }
-  };
 
   return (
     <main className="min-h-screen bg-[#030712] text-slate-300 font-sans selection:bg-cyan-600/30 relative overflow-x-hidden">      
@@ -313,7 +285,6 @@ export default function ClientPage({ initialContent }: { initialContent: SiteCon
           {/* Navigation Links */}
           <nav className="hidden lg:flex items-center gap-10 text-sm font-bold uppercase tracking-widest">
             {[
-              { label: 'SERVICES', href: '#what-we-guide' },
               { label: 'PROCESS', href: '#how-it-works' },
               { label: 'TESTIMONIALS', href: '#testimonials' },
               { label: 'FAQS', href: '#faqs' }
@@ -365,18 +336,9 @@ export default function ClientPage({ initialContent }: { initialContent: SiteCon
               </h1>
 
               <p className="text-slate-200 text-lg md:text-xl font-normal leading-relaxed max-w-2xl">
-                {content.hero?.description?.[0]?.value || "Get expert guidance throughout your research paper journey from understanding your research direction to working confidently on your research paper."}
+                {content.hero?.description?.[0]?.value || "Get expert guidance at every step, from refining your research direction to developing your paper with clarity and confidence. "}
               </p>
 
-              {/* Callout Box */}
-              <div className="bg-[#081226]/90 border-l-4 border-cyan-400 rounded-xl p-6 md:p-7 border-t border-r border-b border-cyan-500/20 shadow-xl backdrop-blur-md space-y-3">
-                <p className="text-cyan-400 font-bold text-lg md:text-xl">
-                  {content.hero?.integrityBold?.value || "You Do the Research. We Guide You Through It."}
-                </p>
-                <p className="text-slate-300 text-sm md:text-base font-normal leading-relaxed">
-                  We provide expert mentorship, research paper guidance, manuscript improvement support, and submission guidance—helping you publish with confidence while maintaining the highest standards of academic integrity.
-                </p>
-              </div>
 
               {/* CTA Action Bar */}
               <div className="pt-2 flex flex-wrap items-center gap-4">
@@ -592,58 +554,6 @@ export default function ClientPage({ initialContent }: { initialContent: SiteCon
           </div>
         </section>
 
-        {/* 4. WHAT WE GUIDE YOU WITH */}
-        <section className="py-20 md:py-28 px-6 relative z-10" id="what-we-guide">
-          <div className="max-w-7xl mx-auto">
-            
-            <FadeIn>
-              <div className="text-center max-w-4xl mx-auto mb-16">
-                <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-5 tracking-tight [text-wrap:balance]">
-                  {content.whatWeGuide?.heading}
-                </h2>
-                <div className="h-px w-24 bg-gradient-to-r from-cyan-400 to-indigo-500 mx-auto shadow-[0_0_10px_rgba(34,211,238,0.9)] mb-6"></div>
-                <p className="text-slate-200 text-lg md:text-xl font-normal">
-                  Comprehensive guidance across every critical section of your academic manuscript.
-                </p>
-              </div>
-            </FadeIn>
-
-            {/* 12 Guidance Modules Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
-              {content.whatWeGuide?.items?.map((item: ContentItem, idx: number) => {
-                const IconComponent = whatWeGuideIcons[idx % whatWeGuideIcons.length];
-                return (
-                  <FadeIn key={idx} delay={idx * 40}>
-                    <div className="bg-[#070e1e]/80 backdrop-blur-xl border border-[#1e293b] hover:border-cyan-500/50 p-7 md:p-8 rounded-2xl hover:bg-[#0c1834] transition-all duration-500 group shadow-lg flex flex-col justify-between h-full">
-                      <div>
-                        <div className="w-14 h-14 rounded-xl bg-[#09152a] border border-cyan-500/30 flex items-center justify-center text-cyan-400 mb-6 group-hover:scale-110 group-hover:border-cyan-400 transition-all duration-300 shadow-inner">
-                          <IconComponent className="h-7 w-7 stroke-[1.75]" />
-                        </div>
-                        <h3 className="text-2xl font-extrabold text-white mb-3 group-hover:text-cyan-300 transition-colors [text-wrap:balance]">
-                          {item.title}
-                        </h3>
-                        <p className="text-slate-300 text-base font-normal leading-relaxed">
-                          {item.description}
-                        </p>
-                      </div>
-                      
-                      {/* Clickable Expert Guidance Button that scrolls to final CTA card in the screen center */}
-                      <button
-                        type="button"
-                        onClick={() => handleGuidanceClick(item.title)}
-                        className="pt-5 mt-5 border-t border-[#1e293b] flex items-center gap-2.5 text-sm font-extrabold uppercase text-cyan-400 hover:text-cyan-300 opacity-90 group-hover:opacity-100 transition-all cursor-pointer w-full text-left group/btn"
-                      >
-                        <span>Expert Guidance</span>
-                        <ArrowRight className="h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
-                      </button>
-                    </div>
-                  </FadeIn>
-                );
-              })}
-            </div>
-
-          </div>
-        </section>
 
         {/* 5. HOW OUR RESEARCH PAPER GUIDANCE WORKS */}
         <section className="py-20 md:py-28 px-6 relative z-10 bg-[#02050e] border-y border-[#1e293b]" id="how-it-works" ref={processRef}>
@@ -703,6 +613,11 @@ export default function ClientPage({ initialContent }: { initialContent: SiteCon
                   {content.whyChoose?.heading}
                 </h2>
                 <div className="h-px w-24 bg-gradient-to-r from-cyan-400 to-indigo-500 mx-auto shadow-[0_0_10px_rgba(34,211,238,0.9)] mb-6"></div>
+                {content.whyChoose?.subheading && (
+                  <p className="text-slate-200 text-lg md:text-xl font-normal max-w-3xl mx-auto">
+                    {content.whyChoose.subheading}
+                  </p>
+                )}
               </div>
             </FadeIn>
 
@@ -716,7 +631,14 @@ export default function ClientPage({ initialContent }: { initialContent: SiteCon
                         <IconComponent className="h-7 w-7 stroke-[1.75]" />
                       </div>
                       <h3 className="text-2xl font-extrabold text-white mb-3 group-hover:text-cyan-300 transition-colors [text-wrap:balance]">
-                        {reason.title}
+                        {reason.title?.includes('|') ? (
+                          <>
+                            <span className="text-cyan-400 font-mono mr-2">{reason.title.split('|')[0].trim()} |</span>
+                            <span>{reason.title.split('|')[1].trim()}</span>
+                          </>
+                        ) : (
+                          reason.title
+                        )}
                       </h3>
                       <p className="text-slate-300 text-base font-normal leading-relaxed">
                         {reason.description}
@@ -771,67 +693,6 @@ export default function ClientPage({ initialContent }: { initialContent: SiteCon
             </div>
         </section>
 
-        {/* 8. YOUR RESEARCH. YOUR PAPER. OUR GUIDANCE. */}
-        <section className="py-20 md:py-28 px-6 relative z-10" id="philosophy">
-          <div className="max-w-5xl mx-auto">
-            
-            <FadeIn>
-              <div className="bg-gradient-to-br from-[#060d1c] via-[#09152b] to-[#060d1c] border-2 border-cyan-500/40 rounded-3xl p-9 md:p-14 shadow-[0_20px_50px_rgba(0,0,0,0.85)] relative overflow-hidden">
-                
-                <div className="text-center max-w-3xl mx-auto mb-12">
-                  <h2 className="text-4xl md:text-6xl font-extrabold text-white mb-5 tracking-tight leading-tight [text-wrap:balance]">
-                    {content.ourPhilosophy?.heading}
-                  </h2>
-                  <div className="h-px w-24 bg-gradient-to-r from-cyan-400 to-indigo-500 mx-auto shadow-[0_0_12px_rgba(34,211,238,0.9)] mb-6"></div>
-                  <h3 className="text-2xl md:text-3xl font-bold text-cyan-300 [text-wrap:balance]">
-                    {content.ourPhilosophy?.subheading}
-                  </h3>
-                </div>
-
-                <div className="space-y-5 text-slate-200 text-lg md:text-xl font-normal leading-relaxed text-center max-w-3xl mx-auto mb-12">
-                  <p>{content.ourPhilosophy?.body1}</p>
-                  <p className="font-extrabold text-white">{content.ourPhilosophy?.body2}</p>
-                  <p className="text-cyan-400 font-bold">{content.ourPhilosophy?.body3}</p>
-                </div>
-
-                {/* Workflow Flow Pills */}
-                <div className="flex flex-wrap justify-center items-center gap-3.5 mb-12">
-                  {content.ourPhilosophy?.flow?.map((item: string, idx: number) => (
-                    <React.Fragment key={idx}>
-                      <span className="px-5 py-2.5 rounded-full bg-cyan-500/15 border border-cyan-400/40 text-cyan-300 text-sm md:text-base font-extrabold uppercase tracking-wider">
-                        {item}
-                      </span>
-                      {idx < (content.ourPhilosophy?.flow?.length ?? 0) - 1 && (
-                        <ArrowRight className="h-4 w-4 text-cyan-400 opacity-60 hidden sm:inline" />
-                      )}
-                    </React.Fragment>
-                  ))}
-                </div>
-
-                {/* Checklist bullets */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4.5 max-w-2xl mx-auto mb-12">
-                  {content.ourPhilosophy?.bullets?.map((bullet: string, idx: number) => (
-                    <div key={idx} className="flex items-center gap-3.5 p-4 rounded-xl bg-[#030814] border border-[#1e293b] text-slate-100 text-base md:text-lg font-bold">
-                      <CheckCircle className="h-5 w-5 text-emerald-400 shrink-0" />
-                      <span>{bullet}</span>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="text-center space-y-7">
-                  <p className="text-slate-200 text-lg md:text-xl font-normal">
-                    {content.ourPhilosophy?.body4}
-                  </p>
-                  <div className="inline-block px-9 py-3.5 rounded-full bg-gradient-to-r from-cyan-500/20 to-blue-600/20 border border-cyan-400 text-cyan-200 font-extrabold text-xl md:text-2xl tracking-wide shadow-[0_0_20px_rgba(34,211,238,0.2)]">
-                    {content.ourPhilosophy?.tagline}
-                  </div>
-                </div>
-
-              </div>
-            </FadeIn>
-
-          </div>
-        </section>
 
         {/* 9. TESTIMONIALS */}
         <section className="py-20 md:py-28 relative z-10 w-full overflow-hidden bg-[#02050e] border-y border-[#1e293b]" id="testimonials">
@@ -894,60 +755,6 @@ export default function ClientPage({ initialContent }: { initialContent: SiteCon
           </div>
         </section>
 
-        {/* 11. FINAL CTA */}
-        <section className="pt-20 pb-40 md:pt-28 md:pb-64 px-6 relative z-10 overflow-hidden" id="final-cta">
-          <FadeIn>
-            <div id="final-cta-card-box" className="max-w-6xl mx-auto bg-gradient-to-r from-[#060c19] via-[#0f192e] to-[#060c19] border-2 border-cyan-500/40 rounded-3xl p-9 md:p-14 relative shadow-[0_25px_70px_rgba(0,0,0,0.85)] overflow-hidden">
-              
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center relative z-10">
-                
-                {/* Left Side */}
-                <div className="lg:col-span-6 space-y-6 text-left">
-                  <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 text-xs font-extrabold uppercase tracking-widest backdrop-blur-md">
-                    <Sparkles className="h-3.5 w-3.5 text-cyan-400" /> Research Paper Mentorship
-                  </div>
-
-                  <h2 className="text-4xl md:text-6xl font-extrabold text-white leading-tight tracking-tight [text-wrap:balance]">
-                    {content.finalCTA?.heading}
-                  </h2>
-
-                  <p className="text-slate-200 font-normal text-lg md:text-xl leading-relaxed">
-                    {content.finalCTA?.subtext}
-                  </p>
-
-                  <div className="p-5 rounded-xl bg-[#081226] border border-cyan-500/30 font-bold text-cyan-300 text-xl md:text-2xl">
-                    {content.finalCTA?.tagline}
-                  </div>
-
-                  <div className="pt-2 flex flex-col gap-3.5">
-                    <div className="flex items-center gap-3.5 text-slate-100 text-base md:text-lg font-semibold">
-                      <CheckCircle className="h-5 w-5 text-cyan-400 shrink-0" />
-                      <span>Individualized Research Paper Guidance</span>
-                    </div>
-                    <div className="flex items-center gap-3.5 text-slate-100 text-base md:text-lg font-semibold">
-                      <CheckCircle className="h-5 w-5 text-cyan-400 shrink-0" />
-                      <span>100% Confidential & Ethical Mentorship</span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Right Side Form */}
-                <div className="lg:col-span-6" id="bottom-cta-card">
-                  <div className="bg-[#030712]/90 backdrop-blur-xl border border-[#1e293b] rounded-2xl p-7 md:p-9 shadow-2xl relative">
-                    <h3 className="text-2xl font-extrabold text-white mb-6 text-center border-b border-white/10 pb-4">Get Research Guidance</h3>
-                    <SharedForm 
-                      formId="bottom-cta" 
-                      buttonText={content.finalCTA?.ctaText || "Get Research Paper Guidance"} 
-                      initialMessage={selectedModuleMessage}
-                    />
-                  </div>
-                </div>
-
-              </div>
-
-            </div>
-          </FadeIn>
-        </section>
 
       </div> {/* End Main Content Wrapper */}
 
